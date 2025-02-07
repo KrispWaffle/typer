@@ -1,18 +1,22 @@
-import sys 
-from time import sleep
-f = open("test.txt", "r")
-text = f.read()
+import pyautogui
+import time
 
-letters = list(text)
-print(letters)
-waitT = 0
-for i in range(len(letters)):
-   
-    if(waitT ==14 and letters[i] == ' '):
-        sleep(3)
-        waitT=0
-    else:
-        print(letters[i], end="",flush=True)
-        sleep(0.01)
-        waitT+=2
 
+
+def type_with_delay(text, delay=0.0002):
+    for character in text:
+        if character == "\n":
+            
+            time.sleep(.5)
+       
+        pyautogui.write(character)
+        time.sleep(delay)  
+       
+
+print("Switch to your Google Doc window")
+time.sleep(5)
+
+with open("./test.txt", "r") as file:
+    text = file.read()
+
+type_with_delay(text)
